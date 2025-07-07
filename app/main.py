@@ -1,3 +1,6 @@
+import os.path
+
+
 def copy_file(command: str) -> None:
     list_of_files = command.split(" ")
 
@@ -7,7 +10,11 @@ def copy_file(command: str) -> None:
         file_out = list_of_files[1]
         file_in = list_of_files[2]
 
-        if file_in != file_out and command == "cp":
+        if (
+            file_in != file_out
+            and command == "cp"
+            and os.path.exists(file_out)
+        ):
             with open(file_out, "r") as out, open(file_in, "w") as into:
                 for line in out:
                     into.write(line)
