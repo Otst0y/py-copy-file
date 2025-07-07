@@ -7,14 +7,14 @@ def copy_file(command: str) -> None:
     if len(list_of_files) == 3:
 
         command = list_of_files[0]
-        file_out = list_of_files[1]
-        file_in = list_of_files[2]
+        source = list_of_files[1]
+        target = list_of_files[2]
 
         if (
-            file_in != file_out
+            target != source
             and command == "cp"
-            and os.path.exists(file_out)
+            and os.path.exists(source)
         ):
-            with open(file_out, "r") as out, open(file_in, "w") as into:
+            with open(source, "r") as out, open(target, "w") as into:
                 for line in out:
                     into.write(line)
